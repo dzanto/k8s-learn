@@ -1,0 +1,38 @@
+Деплоймент состоит из подов(в поде бежит контейнер)
+
+список деполйментс
+kubectl get deploy
+
+создаем деплой (можно писать кратко deploy)
+kubectl create deployment dzanto-deploy --image nginx:latest
+при создании деплоя создается pod
+
+описание деплоя
+kubectl describe deployments dzanto-deploy
+
+Scaling: масштабирование, указываем количество реплик
+kubectl scale deployment dzanto-deploy --replicas 2
+при создании масштабирования создается replica set
+kubectl get rs
+
+AutoScaling: автомасштабирование
+kubectl autoscale deployment dzanto-deploy --min=1 --max=3 --cpu-percent=80
+при создании автомасштабирования создается объект hpa отображающий текущую нагрузку и кол-во текущих подов
+hpa - horizontal pod autoscaler
+kubectl get hpa
+
+история версий развертывания
+kubectl rollout history deployment/dzanto-deploy
+kubectl rollout status deployment/dzanto-deploy
+
+установить новый образ в контейнер:
+kubectl set image deployment/dzanto-deploy nginx=nginx:new_version1 --record
+после выполнения в истории добавится запись с номером
+
+вернуться на предыдушую версию образа
+kubectl rollout undo deployment/dzanto-dep
+или указать точный номер из истории:
+kubectl rollout undo deployment/dzanto-dep --to-revision=3
+
+если в версия образа указана как latest, можно сделать просто рестарт deployment, и образ обновиться на latest версию
+kubectl rollout restart deployment/dzanto-deploy
