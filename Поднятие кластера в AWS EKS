@@ -23,7 +23,7 @@ metadata:
 nodeGroups:
   - name: ng-1
     instanceType: t3.micro
-    desiredCapacity: 2
+    desiredCapacity: 2 #желаемое емкость(количество) инстансов
   - name: ng-2
     instanceType: t3.micro
     desiredCapacity: 2
