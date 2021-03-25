@@ -28,6 +28,9 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: my-web
+  labels:
+    any_labels_key: any_labels_value
+    second_label: second_value
 spec:
   containers:
   - name: container-apache
@@ -40,3 +43,27 @@ kubectl apply -f my-web.yaml
 
 удалить под из yaml файла
 kubectl delete -f my-web.yaml
+
+в yaml файле можно менять image без дестроя ПОДА, после чего еше раз запустить apply и образ обновится
+
+в yaml файле можно описать несколько контейнеров 
+my-duble-pod.yaml
+###
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-web
+  labels:
+    any_labels_key: any_labels_value
+    second_label: second_value
+spec:
+  containers:
+  - name: container-apache
+    image: httpd:latest
+    ports:
+      - containerPort: 80
+  - name: container-tomcat
+    image: tomcat: 8.5.38
+    ports:
+      - containerPort: 8080
+###
