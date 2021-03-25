@@ -36,3 +36,4 @@ kubectl rollout undo deployment/dzanto-dep --to-revision=3
 
 если в версия образа указана как latest, можно сделать просто рестарт deployment, и образ обновиться на latest версию
 kubectl rollout restart deployment/dzanto-deploy
+
