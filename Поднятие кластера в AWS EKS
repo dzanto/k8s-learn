@@ -40,5 +40,8 @@ kubectl version --client
 kubectl cluster-info
 kubectl get nodes - список нодов в кластере
 
-
 eksctl version
+
+Место хранения конфигурации kubectl с k8s cluster
+~/.kube/config
+
