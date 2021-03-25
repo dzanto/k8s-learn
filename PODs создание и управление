@@ -1,0 +1,1 @@
+kubectl run hello --image=nginx --port=80
