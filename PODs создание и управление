@@ -24,10 +24,19 @@ kubectl port-forward hello 7777:80
 
 создаем манифест yaml файл с описанием пода, например my-web.yaml
 ###
-
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-web
+spec:
+  containers:
+  - name: container-apache
+    image: httpd:latest
+    ports:
+      - containerPort: 80
 ###
 запуск пода из yaml файла
-
+kubectl apply -f my-web.yaml
 
 удалить под из yaml файла
 kubectl delete -f my-web.yaml
