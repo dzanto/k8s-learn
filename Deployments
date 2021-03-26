@@ -65,14 +65,14 @@ spec:
     spec:
     # спецификация пода
       containers:
-        - name: kgb-web
-          image: nginx:latest
-          ports:
-            - containerPort: 80 
+      - name: kgb-web
+        image: nginx:latest
+        ports:
+        - containerPort: 80 
 # добавялем autoscaler, можно в этот же файл через --- или в отдельный файл
 ---
 apiVersion: autoscaling/v2beta1
-kind HorizontalPodAutoscaler
+kind: HorizontalPodAutoscaler
 metadata:
   name: my-autoscaling
 spec:
