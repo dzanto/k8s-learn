@@ -40,3 +40,6 @@ kubectl expose deployment my-deploy-name --type=LoadBalancer --port 80
 kubectl get svc
 ```
 ### Запуск сервисов из манифест файлов
+```
+kubectl apply -f my-service.yaml
+```
