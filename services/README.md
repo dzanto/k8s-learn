@@ -41,5 +41,5 @@ kubectl get svc
 ```
 ### Запуск сервисов из манифест файлов
 ```
-kubectl apply -f my-service.yaml
+kubectl apply -f svc-loadbalancer.yaml
 ```
