@@ -37,26 +37,60 @@ kubectl rollout undo deployment/dzanto-dep --to-revision=3
 если в версия образа указана как latest, можно сделать просто рестарт deployment, и образ обновиться на latest версию
 kubectl rollout restart deployment/dzanto-deploy
 
-для запуска deployment из манифест файла my-deployment.yaml
+для запуска deployment из манифест файла my-deployment.yaml выполняем команду:
+kubectl apply -f my-deployment.yaml
+
+пример файла my-deployment.yaml
 ###
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  # имя deployment
   name: my-web-deploy
   labels:
     app: my-k8s-app
 spec:
+  # указываем количество реплик
+  replicas: 2
   selector:
+    # указываем с какими pods этот deploy будет работать project: kgb
     matchLabels:
       project: kgb
+  #далее описание pod
   template:
     metadata:
       labels: 
+        #у пода указываем label project: kgb
         project: kgb
     spec:
+    # спецификация пода
       containers:
         - name: kgb-web
           image: nginx:latest
           ports:
-            - containerPort: 80
-           
+            - containerPort: 80 
+# добавялем autoscaler, можно в этот же файл через --- или в отдельный файл
+---
+apiVersion: autoscaling/v2beta1
+kind HorizontalPodAutoscaler
+metadata:
+  name: my-autoscaling
+spec:
+  # описываем, что будем автоскейлить
+  scaleTargetRef:
+    apiVersion: apps/v2beta1v1
+    kind: Deployment
+    # имя my-web-deploy берем из описания deployment
+    name: my-web-deploy
+  minReplicas: 2
+  maxReplicas: 4
+  # в зависимости от каких ресурсов масштабировать
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      targetAverageUtilization: 80
