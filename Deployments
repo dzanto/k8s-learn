@@ -37,3 +37,26 @@ kubectl rollout undo deployment/dzanto-dep --to-revision=3
 если в версия образа указана как latest, можно сделать просто рестарт deployment, и образ обновиться на latest версию
 kubectl rollout restart deployment/dzanto-deploy
 
+для запуска deployment из манифест файла my-deployment.yaml
+###
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deploy
+  labels:
+    app: my-k8s-app
+spec:
+  selector:
+    matchLabels:
+      project: kgb
+  template:
+    metadata:
+      labels: 
+        project: kgb
+    spec:
+      containers:
+        - name: kgb-web
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+           
