@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      pod_app: nginx
+  template:
+    metadata:
+      labels:
+        pod_app: nginx  # Service will look for those PODS labels
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+      - name: Apache
+        image: httpd:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service-name
+  labels:
+    owner: dzanto
+spec:
+  selector:
+    pod_app: nginx  # Selecting PODS with those labels
+  ports:
+  - name      : nginx
+    protocol  : TCP
+    port      : 80 # Port on Load Balancer
+    targetPort: 80 # Port on POD
+    
+  - name      : apache
+    protocol  : TCP
+    port      : 8080
+    targetPort: 8080
