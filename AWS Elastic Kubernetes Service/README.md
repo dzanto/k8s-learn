@@ -1,3 +1,4 @@
+### Поднятие Кластера в AWS Elastic Kubernetes Service
 Необходимо установить:
 - awscli - для аутинтефикации и запуска команд AWS (в amazon linux он уже установлен) 
 - kubectl - для управления k8s кластера
