@@ -4,7 +4,7 @@
 ```
 kubectl run hello --image=nginx --port=80
 ```
-просмотр запущенных подов
+просмотр списка запущенных подов
 ```
 kubectl get pods
 ```
@@ -16,12 +16,9 @@ kubectl delete pods hello
 ```
 kubectl describe pods hello
 ```
-запустить команду date на поде hello
+запустить команду date на поде hello и запустить shell интерактивно:
 ```
 kubectl exec hello -- date
-```
-запустить шелл интерактивно
-```
 kubectl exec -it hello -- sh
 ```
 Просмотр лога пода
