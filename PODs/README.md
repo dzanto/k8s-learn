@@ -30,12 +30,9 @@ kubectl logs hello
 kubectl port-forward hello 7777:80
 ```
 Под можно запустить из манифест файла (пример my-web.yaml)
-запуск пода из yaml файла
+запуск и удаление POD из yaml файла
 ```
 kubectl apply -f my-web.yaml
-```
-удалить под из yaml файла
-```
 kubectl delete -f my-web.yaml
 ```
 в yaml файле можно менять image без дестроя POD, после чего еше раз запустить apply и образ обновится
