@@ -1,11 +1,11 @@
 ### Deployments
-Деплоймент состоит из подов(в поде бежит контейнер)
+Деплоймент состоит из PODs(в POD запущен docker контейнер)
 
-Просмотр списока деполйментс
+Просмотр списока deployments
 ```
 kubectl get deploy
 ```
-Создаем деплой (можно писать кратко deploy)
+Создаем deployment (можно писать кратко deploy)
 ```
 kubectl create deployment dzanto-deploy --image nginx:latest
 ```
