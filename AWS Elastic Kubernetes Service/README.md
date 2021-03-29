@@ -6,8 +6,8 @@
 
 Установить creditional для пользователя AWS:
 ```
-export AWS_ACCESS_KEY_ID=AKIAYV3OF6JKOLFTW5LA
-export AWS_SECRET_ACCESS_KEY=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
+export AWS_ACCESS_KEY_ID=AKIAYV
+export AWS_SECRET_ACCESS_KEY=9VBe3
 export AWS_DEFAULT_REGION=eu-north-1
 ```
   
