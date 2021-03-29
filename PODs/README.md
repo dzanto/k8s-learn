@@ -29,7 +29,7 @@ kubectl logs hello
 ```
 kubectl port-forward hello 7777:80
 ```
-Под можно запустить из манифест файла (пример my-web.yaml)
+POD можно запустить из манифест файла (пример my-web.yaml)
 запуск и удаление POD из yaml файла
 ```
 kubectl apply -f my-web.yaml
